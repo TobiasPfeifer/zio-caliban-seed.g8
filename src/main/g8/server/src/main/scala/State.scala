@@ -52,7 +52,7 @@ case class StateLive(
 }
 
 object StateLive {
-  val stateLive: ZIO[Any, Nothing, StateLive] =
+  private val stateLive: ZIO[Any, Nothing, StateLive] =
     for {
       hub   <- Hub.dropping[Take[Nothing, UserEvent]](1024)
       queue <- TQueue.bounded[Take[Nothing, UserEvent]](1024).commit
